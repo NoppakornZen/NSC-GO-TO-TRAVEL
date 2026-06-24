@@ -2,6 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LoginScreen from "./app/LoginScreen";
+import LobbyScreen from "./app/LobbyScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -11,6 +12,7 @@ export default function App() {
       <StatusBar style="dark" />
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Home" component={LobbyScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
