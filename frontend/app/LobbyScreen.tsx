@@ -11,6 +11,8 @@ import {
   StatusBar,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { Ionicons, MaterialCommunityIcons, FontAwesome5 } from "@expo/vector-icons";
+import { Ionicons, MaterialCommunityIcons, FontAwesome5 } from '@expo/vector-icons';
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
@@ -55,19 +57,19 @@ export default function LobbyScreen({ navigation }: any) {
             <View style={styles.topBarRight}>
               <View style={styles.iconBtnWrapper}>
                 <TouchableOpacity style={styles.iconBtn}>
-                  <Text style={styles.iconText}>🐾</Text>
+                  <MaterialCommunityIcons name="paw" size={18} color="#8B5A3C" />
                 </TouchableOpacity>
                 <Text style={styles.iconLabel}>--</Text>
               </View>
               <View style={styles.iconBtnWrapper}>
                 <TouchableOpacity style={styles.iconBtn}>
-                  <Text style={styles.iconText}>🎒</Text>
+                  <Ionicons name="bag-outline" size={18} color="#8B5A3C" />
                 </TouchableOpacity>
                 <Text style={styles.iconLabel}>--</Text>
               </View>
               <View style={styles.iconBtnWrapper}>
                 <TouchableOpacity style={styles.iconBtn}>
-                  <Text style={styles.iconText}>🔔</Text>
+                  <Ionicons name="notifications-outline" size={18} color="#8B5A3C" />
                 </TouchableOpacity>
               </View>
             </View>
@@ -82,7 +84,7 @@ export default function LobbyScreen({ navigation }: any) {
           <View style={styles.mainMenu}>
             <TouchableOpacity style={styles.menuItem}>
               <View style={styles.menuIcon}>
-                <Text style={styles.menuIconText}>🐾</Text>
+                <MaterialCommunityIcons name="paw" size={28} color="#8B5A3C" />
               </View>
               <Text style={styles.menuLabel}>ส่งตัว Scout</Text>
               <Text style={styles.menuSublabel}>ค้นหาเพื่อนพิเศษ</Text>
@@ -90,7 +92,7 @@ export default function LobbyScreen({ navigation }: any) {
 
             <TouchableOpacity style={styles.menuItem}>
               <View style={styles.menuIcon}>
-                <Text style={styles.menuIconText}>🗺️</Text>
+                <MaterialCommunityIcons name="cellphone-link" size={28} color="#4A90E2" />
               </View>
               <Text style={styles.menuLabel}>สแกน AR</Text>
               <Text style={styles.menuSublabel}>เจอ Mascot</Text>
@@ -98,7 +100,7 @@ export default function LobbyScreen({ navigation }: any) {
 
             <TouchableOpacity style={styles.menuItem}>
               <View style={styles.menuIcon}>
-                <Text style={styles.menuIconText}>📖</Text>
+                <Ionicons name="book" size={26} color="#8B5A3C" />
               </View>
               <Text style={styles.menuLabel}>Memory Book</Text>
               <Text style={styles.menuSublabel}>บันทึกความทรงจำ</Text>
@@ -106,7 +108,7 @@ export default function LobbyScreen({ navigation }: any) {
 
             <TouchableOpacity style={styles.menuItem}>
               <View style={styles.menuIcon}>
-                <Text style={styles.menuIconText}>🚩</Text>
+                <Ionicons name="flag" size={26} color="#6B9B5E" />
               </View>
               <Text style={styles.menuLabel}>ภารกิจ & ของรางวัล</Text>
               <Text style={styles.menuSublabel}>กิจกรรมสนุกๆ</Text>
@@ -117,7 +119,7 @@ export default function LobbyScreen({ navigation }: any) {
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
               <View style={styles.sectionTitleRow}>
-                <Text style={styles.sectionIcon}>🚩</Text>
+                <Ionicons name="flag" size={18} color="#8B5A3C" />
                 <Text style={styles.sectionTitle}>ภารกิจพิเศษ</Text>
               </View>
               <TouchableOpacity>
@@ -127,7 +129,10 @@ export default function LobbyScreen({ navigation }: any) {
             <View style={styles.mapContainer}>
               <Image source={MAP_MISSION} style={styles.mapImage} resizeMode="cover" />
               <View style={styles.mapOverlay}>
-                <Text style={styles.mapLabel}>🐾 Auto ~~ Checkpoint</Text>
+                <View style={styles.mapLabelContainer}>
+                  <MaterialCommunityIcons name="paw" size={12} color="#3D2817" />
+                  <Text style={styles.mapLabel}>Auto ~~ Checkpoint</Text>
+                </View>
               </View>
             </View>
           </View>
@@ -136,7 +141,7 @@ export default function LobbyScreen({ navigation }: any) {
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
               <View style={styles.sectionTitleRow}>
-                <Text style={styles.sectionIcon}>👥</Text>
+                <Ionicons name="people" size={18} color="#8B5A3C" />
                 <Text style={styles.sectionTitle}>เพื่อนร่วมทริปของคุณ</Text>
               </View>
               <TouchableOpacity>
@@ -164,7 +169,7 @@ export default function LobbyScreen({ navigation }: any) {
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
               <View style={styles.sectionTitleRow}>
-                <Text style={styles.sectionIcon}>🐾</Text>
+                <MaterialCommunityIcons name="paw" size={18} color="#8B5A3C" />
                 <Text style={styles.sectionTitle}>แนะนำสำหรับคุณ</Text>
               </View>
               <TouchableOpacity>
@@ -182,7 +187,10 @@ export default function LobbyScreen({ navigation }: any) {
                   />
                 </View>
                 <View style={styles.placeInfo}>
-                  <Text style={styles.placeLabel}>🐾 ~~ Checkpoint</Text>
+                  <View style={styles.placeLabelRow}>
+                    <MaterialCommunityIcons name="paw" size={10} color="#8B7355" />
+                    <Text style={styles.placeLabel}>~~ Checkpoint</Text>
+                  </View>
                 </View>
               </View>
 
@@ -194,7 +202,10 @@ export default function LobbyScreen({ navigation }: any) {
                   />
                 </View>
                 <View style={styles.placeInfo}>
-                  <Text style={styles.placeLabel}>🐾 ~~ Checkpoint</Text>
+                  <View style={styles.placeLabelRow}>
+                    <MaterialCommunityIcons name="paw" size={10} color="#8B7355" />
+                    <Text style={styles.placeLabel}>~~ Checkpoint</Text>
+                  </View>
                 </View>
               </View>
 
@@ -206,7 +217,10 @@ export default function LobbyScreen({ navigation }: any) {
                   />
                 </View>
                 <View style={styles.placeInfo}>
-                  <Text style={styles.placeLabel}>🐾 ~~ Checkpoint</Text>
+                  <View style={styles.placeLabelRow}>
+                    <MaterialCommunityIcons name="paw" size={10} color="#8B7355" />
+                    <Text style={styles.placeLabel}>~~ Checkpoint</Text>
+                  </View>
                 </View>
               </View>
 
@@ -218,7 +232,10 @@ export default function LobbyScreen({ navigation }: any) {
                   />
                 </View>
                 <View style={styles.placeInfo}>
-                  <Text style={styles.placeLabel}>🐾 ~~ Checkpoint</Text>
+                  <View style={styles.placeLabelRow}>
+                    <MaterialCommunityIcons name="paw" size={10} color="#8B7355" />
+                    <Text style={styles.placeLabel}>~~ Checkpoint</Text>
+                  </View>
                 </View>
               </View>
             </ScrollView>
@@ -227,7 +244,7 @@ export default function LobbyScreen({ navigation }: any) {
           {/* Promotion Banner */}
           <View style={styles.promotionBanner}>
             <View style={styles.promoLeft}>
-              <Text style={styles.promoIcon}>💎</Text>
+              <MaterialCommunityIcons name="treasure-chest" size={24} color="#F4C542" />
             </View>
             <View style={styles.promoCenter}>
               <Text style={styles.promoTitle}>ใช้วันนี้และรับคืนเป็น</Text>
@@ -237,9 +254,9 @@ export default function LobbyScreen({ navigation }: any) {
             </View>
             <View style={styles.promoRight}>
               <View style={styles.promoRewards}>
-                <Text style={styles.promoRewardIcon}>📚</Text>
-                <Text style={styles.promoRewardIcon}>🐻</Text>
-                <Text style={styles.promoRewardIcon}>😊</Text>
+                <Ionicons name="book" size={28} color="#8B5A3C" />
+                <MaterialCommunityIcons name="teddy-bear" size={28} color="#8B5A3C" />
+                <Ionicons name="happy" size={28} color="#F4C542" />
               </View>
             </View>
           </View>
@@ -251,25 +268,25 @@ export default function LobbyScreen({ navigation }: any) {
         {/* Bottom Navigation */}
         <View style={styles.bottomNav}>
           <TouchableOpacity style={styles.navItem}>
-            <Text style={styles.navIconActive}>🏠</Text>
+            <Ionicons name="home" size={22} color="#8B5A3C" />
             <Text style={[styles.navLabel, styles.navLabelActive]}>Home</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.navItem}>
-            <Text style={styles.navIcon}>🎁</Text>
+            <Ionicons name="gift-outline" size={22} color="#8B7355" />
             <Text style={styles.navLabel}>Reward</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.navItem}>
             <View style={styles.navCenterIcon}>
-              <Text style={styles.navCenterIconText}>🐻</Text>
+              <MaterialCommunityIcons name="dog" size={26} color="#FFFFFF" />
             </View>
             <Text style={styles.navLabel}>คู่หู Scout</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.navItem}>
-            <Text style={styles.navIcon}>🐾</Text>
+            <MaterialCommunityIcons name="paw" size={22} color="#8B7355" />
             <Text style={styles.navLabel}>Paw</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.navItem}>
-            <Text style={styles.navIcon}>👤</Text>
+            <Ionicons name="person-outline" size={22} color="#8B7355" />
             <Text style={styles.navLabel}>Profile</Text>
           </TouchableOpacity>
         </View>
@@ -383,9 +400,6 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     elevation: 2,
   },
-  iconText: {
-    fontSize: 16,
-  },
   iconLabel: {
     fontSize: 10,
     color: "#8B7355",
@@ -461,9 +475,6 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 2,
   },
-  menuIconText: {
-    fontSize: 26,
-  },
   menuLabel: {
     fontSize: 10,
     fontWeight: "600",
@@ -491,7 +502,7 @@ const styles = StyleSheet.create({
   sectionTitleRow: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 6,
+    gap: 8,
   },
   sectionIcon: {
     fontSize: 18,
@@ -524,15 +535,20 @@ const styles = StyleSheet.create({
     left: 12,
     right: 12,
   },
-  mapLabel: {
-    fontSize: 11,
-    color: "#3D2817",
-    fontWeight: "600",
+  mapLabelContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 4,
     backgroundColor: "#FFFFFFDD",
     paddingHorizontal: 10,
     paddingVertical: 6,
     borderRadius: 12,
     alignSelf: "flex-start",
+  },
+  mapLabel: {
+    fontSize: 11,
+    color: "#3D2817",
+    fontWeight: "600",
   },
 
   // Friends
@@ -612,6 +628,11 @@ const styles = StyleSheet.create({
   placeInfo: {
     padding: 10,
   },
+  placeLabelRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 4,
+  },
   placeLabel: {
     fontSize: 10,
     color: "#8B7355",
@@ -638,9 +659,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     alignItems: "center",
     justifyContent: "center",
-  },
-  promoIcon: {
-    fontSize: 24,
   },
   promoCenter: {
     flex: 1,
@@ -691,14 +709,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 3,
   },
-  navIcon: {
-    fontSize: 22,
-    opacity: 0.4,
-  },
-  navIconActive: {
-    fontSize: 22,
-    opacity: 1,
-  },
   navCenterIcon: {
     width: 52,
     height: 52,
@@ -712,9 +722,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 8,
     elevation: 8,
-  },
-  navCenterIconText: {
-    fontSize: 26,
   },
   navLabel: {
     fontSize: 9,
