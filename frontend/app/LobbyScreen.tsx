@@ -17,7 +17,7 @@ const { width: SCREEN_WIDTH } = Dimensions.get("window");
 // Assets
 const LOGO = require("../assets/lobby/logo.png");
 const AVATAR_BEAR = require("../assets/lobby/avatar-bear.png");
-const HERO_BEAR = require("../assets/lobby/hero-bear.png");
+const HERO_BANNER_BG = require("../assets/lobby/hero-banner-bg.png");
 const FRIEND_HAMSTER = require("../assets/lobby/friend-hamster.png");
 const FRIEND_OTTER = require("../assets/lobby/friend-otter.png");
 const FRIEND_PANDA = require("../assets/lobby/friend-panda.png");
@@ -36,46 +36,46 @@ export default function LobbyScreen({ navigation }: any) {
           {/* Top Bar */}
           <View style={styles.topBar}>
             <View style={styles.topBarLeft}>
-              <Image source={AVATAR_BEAR} style={styles.avatar} />
+              <View style={styles.avatarContainer}>
+                <Image source={AVATAR_BEAR} style={styles.avatar} />
+              </View>
               <View>
-                <Text style={styles.greeting}>สวัสดี, Noppakorn!</Text>
-                <Text style={styles.level}>Explorer Lv.1</Text>
+                <Text style={styles.greeting}>สวัสดี, นักเดินทาง!</Text>
+                <View style={styles.levelContainer}>
+                  <Text style={styles.levelText}>Explorer</Text>
+                  <View style={styles.levelBadge}>
+                    <Text style={styles.levelBadgeText}>Lv.1</Text>
+                  </View>
+                </View>
               </View>
             </View>
             <View style={styles.topBarCenter}>
               <Image source={LOGO} style={styles.logo} resizeMode="contain" />
             </View>
             <View style={styles.topBarRight}>
-              <TouchableOpacity style={styles.iconBtn}>
-                <Text style={styles.iconPaw}>🐾</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.iconBtn}>
-                <Text style={styles.iconBag}>💼</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.iconBtn}>
-                <Text style={styles.iconBell}>🔔</Text>
-              </TouchableOpacity>
+              <View style={styles.iconBtnWrapper}>
+                <TouchableOpacity style={styles.iconBtn}>
+                  <Text style={styles.iconText}>🐾</Text>
+                </TouchableOpacity>
+                <Text style={styles.iconLabel}>--</Text>
+              </View>
+              <View style={styles.iconBtnWrapper}>
+                <TouchableOpacity style={styles.iconBtn}>
+                  <Text style={styles.iconText}>🎒</Text>
+                </TouchableOpacity>
+                <Text style={styles.iconLabel}>--</Text>
+              </View>
+              <View style={styles.iconBtnWrapper}>
+                <TouchableOpacity style={styles.iconBtn}>
+                  <Text style={styles.iconText}>🔔</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
 
           {/* Hero Banner */}
           <View style={styles.heroBanner}>
-            <View style={styles.heroContent}>
-              <Text style={styles.heroTitle}>องค์อนภา{"\n"}สร้างความทรงจำ</Text>
-              <Text style={styles.heroSubtitle}>Make with Scout Companion</Text>
-              <TouchableOpacity style={styles.heroButton}>
-                <LinearGradient
-                  colors={["#8B5A3C", "#A67C52", "#C4915F"]}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 0 }}
-                  style={styles.heroButtonGradient}
-                >
-                  <Text style={styles.heroButtonText}>เริ่มต้นค้นหาเส้นทาง</Text>
-                  <Text style={styles.heroButtonArrow}>→</Text>
-                </LinearGradient>
-              </TouchableOpacity>
-            </View>
-            <Image source={HERO_BEAR} style={styles.heroBear} resizeMode="contain" />
+            <Image source={HERO_BANNER_BG} style={styles.heroBannerImage} resizeMode="cover" />
           </View>
 
           {/* Main Menu Icons */}
@@ -84,16 +84,16 @@ export default function LobbyScreen({ navigation }: any) {
               <View style={styles.menuIcon}>
                 <Text style={styles.menuIconText}>🐾</Text>
               </View>
-              <Text style={styles.menuLabel}>Auto Scout</Text>
-              <Text style={styles.menuSublabel}>ค้นหาเส้นทางอัตโนมัติ</Text>
+              <Text style={styles.menuLabel}>ส่งตัว Scout</Text>
+              <Text style={styles.menuSublabel}>ค้นหาเพื่อนพิเศษ</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.menuItem}>
               <View style={styles.menuIcon}>
-                <Text style={styles.menuIconText}>📱</Text>
+                <Text style={styles.menuIconText}>🗺️</Text>
               </View>
-              <Text style={styles.menuLabel}>เมนู AR</Text>
-              <Text style={styles.menuSublabel}>Ler Manual</Text>
+              <Text style={styles.menuLabel}>สแกน AR</Text>
+              <Text style={styles.menuSublabel}>เจอ Mascot</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.menuItem}>
@@ -109,26 +109,36 @@ export default function LobbyScreen({ navigation }: any) {
                 <Text style={styles.menuIconText}>🚩</Text>
               </View>
               <Text style={styles.menuLabel}>ภารกิจ & ของรางวัล</Text>
-              <Text style={styles.menuSublabel}>Rewards&quest</Text>
+              <Text style={styles.menuSublabel}>กิจกรรมสนุกๆ</Text>
             </TouchableOpacity>
           </View>
 
           {/* Mission Section */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Text style={styles.sectionTitle}>ภารกิจพิเศษ</Text>
+              <View style={styles.sectionTitleRow}>
+                <Text style={styles.sectionIcon}>🚩</Text>
+                <Text style={styles.sectionTitle}>ภารกิจพิเศษ</Text>
+              </View>
               <TouchableOpacity>
-                <Text style={styles.seeAll}>ดูทั้งหมด →</Text>
+                <Text style={styles.seeAll}>ดูรายละเอียด →</Text>
               </TouchableOpacity>
             </View>
-            <Image source={MAP_MISSION} style={styles.mapImage} resizeMode="contain" />
-            <Text style={styles.missionLabel}>Auto ~~ Checkpoint</Text>
+            <View style={styles.mapContainer}>
+              <Image source={MAP_MISSION} style={styles.mapImage} resizeMode="cover" />
+              <View style={styles.mapOverlay}>
+                <Text style={styles.mapLabel}>🐾 Auto ~~ Checkpoint</Text>
+              </View>
+            </View>
           </View>
 
           {/* Friends Section */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Text style={styles.sectionTitle}>เพื่อนร่วมทริปของคุณ</Text>
+              <View style={styles.sectionTitleRow}>
+                <Text style={styles.sectionIcon}>👥</Text>
+                <Text style={styles.sectionTitle}>เพื่อนร่วมทริปของคุณ</Text>
+              </View>
               <TouchableOpacity>
                 <Text style={styles.seeAll}>ดูทั้งหมด →</Text>
               </TouchableOpacity>
@@ -145,62 +155,92 @@ export default function LobbyScreen({ navigation }: any) {
               </View>
             </View>
             <TouchableOpacity style={styles.viewAllButton}>
-              <Text style={styles.viewAllButtonText}>ดูทั้งหมด</Text>
+              <Text style={styles.viewAllButtonText}>ดูภาพทั้งหมด</Text>
+              <Text style={styles.viewAllButtonArrow}>→</Text>
             </TouchableOpacity>
           </View>
 
           {/* Recommended Section */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Text style={styles.sectionTitle}>แนะนำสำหรับคุณ</Text>
+              <View style={styles.sectionTitleRow}>
+                <Text style={styles.sectionIcon}>🐾</Text>
+                <Text style={styles.sectionTitle}>แนะนำสำหรับคุณ</Text>
+              </View>
               <TouchableOpacity>
-                <Text style={styles.seeAll}>ดูทั้งหมด →</Text>
-              </TouchableOpacity>
-            </View>
-
-            {/* Filter Tabs */}
-            <View style={styles.filterTabs}>
-              <TouchableOpacity style={styles.filterTab}>
-                <Text style={styles.filterTabText}>ดูทั้งหมด</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={[styles.filterTab, styles.filterTabActive]}>
-                <Text style={[styles.filterTabText, styles.filterTabTextActive]}>Checkpoint</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.filterTab}>
-                <Text style={styles.filterTabText}>Checkpoint</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.filterTab}>
-                <Text style={styles.filterTabText}>Checkpoint</Text>
+                <Text style={styles.seeAll}>ดูรายละเอียด →</Text>
               </TouchableOpacity>
             </View>
 
             {/* Place Cards */}
             <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.placeScroll}>
-              {[1, 2, 3, 4].map((item) => (
-                <View key={item} style={styles.placeCard}>
-                  <View style={styles.placeholderImage}>
-                    <Text style={styles.placeholderText}>Place {item}</Text>
-                  </View>
-                  <View style={styles.placeInfo}>
-                    <Text style={styles.placeCheckpoint}>🐾 Checkpoint</Text>
-                  </View>
+              <View style={styles.placeCard}>
+                <View style={styles.placeImageContainer}>
+                  <Image
+                    source={{ uri: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4' }}
+                    style={styles.placeImage}
+                  />
                 </View>
-              ))}
+                <View style={styles.placeInfo}>
+                  <Text style={styles.placeLabel}>🐾 ~~ Checkpoint</Text>
+                </View>
+              </View>
+
+              <View style={styles.placeCard}>
+                <View style={styles.placeImageContainer}>
+                  <Image
+                    source={{ uri: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19' }}
+                    style={styles.placeImage}
+                  />
+                </View>
+                <View style={styles.placeInfo}>
+                  <Text style={styles.placeLabel}>🐾 ~~ Checkpoint</Text>
+                </View>
+              </View>
+
+              <View style={styles.placeCard}>
+                <View style={styles.placeImageContainer}>
+                  <Image
+                    source={{ uri: 'https://images.unsplash.com/photo-1528127269322-539801943592' }}
+                    style={styles.placeImage}
+                  />
+                </View>
+                <View style={styles.placeInfo}>
+                  <Text style={styles.placeLabel}>🐾 ~~ Checkpoint</Text>
+                </View>
+              </View>
+
+              <View style={styles.placeCard}>
+                <View style={styles.placeImageContainer}>
+                  <Image
+                    source={{ uri: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800' }}
+                    style={styles.placeImage}
+                  />
+                </View>
+                <View style={styles.placeInfo}>
+                  <Text style={styles.placeLabel}>🐾 ~~ Checkpoint</Text>
+                </View>
+              </View>
             </ScrollView>
           </View>
 
           {/* Promotion Banner */}
           <View style={styles.promotionBanner}>
-            <View style={styles.promoContent}>
+            <View style={styles.promoLeft}>
+              <Text style={styles.promoIcon}>💎</Text>
+            </View>
+            <View style={styles.promoCenter}>
               <Text style={styles.promoTitle}>ใช้วันนี้และรับคืนเป็น</Text>
               <TouchableOpacity style={styles.promoButton}>
-                <Text style={styles.promoButtonText}>ดูของรางวัลทั้งหมด</Text>
+                <Text style={styles.promoButtonText}>ดูของรางวัล</Text>
               </TouchableOpacity>
             </View>
-            <View style={styles.promoRewards}>
-              <Text style={styles.promoRewardIcon}>📚</Text>
-              <Text style={styles.promoRewardIcon}>🐻</Text>
-              <Text style={styles.promoRewardIcon}>😊</Text>
+            <View style={styles.promoRight}>
+              <View style={styles.promoRewards}>
+                <Text style={styles.promoRewardIcon}>📚</Text>
+                <Text style={styles.promoRewardIcon}>🐻</Text>
+                <Text style={styles.promoRewardIcon}>😊</Text>
+              </View>
             </View>
           </View>
 
@@ -222,7 +262,7 @@ export default function LobbyScreen({ navigation }: any) {
             <View style={styles.navCenterIcon}>
               <Text style={styles.navCenterIconText}>🐻</Text>
             </View>
-            <Text style={styles.navLabel}>Scout</Text>
+            <Text style={styles.navLabel}>คู่หู Scout</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.navItem}>
             <Text style={styles.navIcon}>🐾</Text>
@@ -267,33 +307,66 @@ const styles = StyleSheet.create({
     gap: 10,
     flex: 1,
   },
+  avatarContainer: {
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    borderWidth: 3,
+    borderColor: "#D4A574",
+    padding: 2,
+    backgroundColor: "#FFFFFF",
+  },
   avatar: {
-    width: 50,
-    height: 50,
+    width: "100%",
+    height: "100%",
     borderRadius: 25,
   },
   greeting: {
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: "600",
     color: "#3D2817",
   },
-  level: {
+  levelContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6,
+    marginTop: 2,
+  },
+  levelText: {
     fontSize: 11,
-    color: "#8B7355",
+    fontWeight: "600",
+    color: "#3D2817",
+  },
+  levelBadge: {
+    backgroundColor: "#F4C542",
+    paddingHorizontal: 8,
+    paddingVertical: 2,
+    borderRadius: 10,
+  },
+  levelBadgeText: {
+    fontSize: 9,
+    fontWeight: "700",
+    color: "#3D2817",
   },
   topBarCenter: {
     flex: 1,
     alignItems: "center",
   },
   logo: {
-    width: 80,
-    height: 40,
+    width: 120,
+    height: 48,
   },
   topBarRight: {
     flexDirection: "row",
-    gap: 8,
+    gap: 6,
     flex: 1,
     justifyContent: "flex-end",
+    alignItems: "center",
+  },
+  iconBtnWrapper: {
+    alignItems: "center",
+    flexDirection: "row",
+    gap: 4,
   },
   iconBtn: {
     width: 36,
@@ -302,167 +375,182 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     alignItems: "center",
     justifyContent: "center",
+    borderWidth: 1,
+    borderColor: "#E5DCC8",
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.08,
+    shadowRadius: 3,
+    elevation: 2,
   },
-  iconPaw: { fontSize: 18 },
-  iconBag: { fontSize: 18 },
-  iconBell: { fontSize: 18 },
+  iconText: {
+    fontSize: 16,
+  },
+  iconLabel: {
+    fontSize: 10,
+    color: "#8B7355",
+    fontWeight: "500",
+  },
 
   // Hero Banner
   heroBanner: {
     marginHorizontal: 16,
-    marginTop: 8,
-    backgroundColor: "#FBF8F3",
+    marginTop: 12,
+    aspectRatio: 2.2,
     borderRadius: 20,
-    padding: 20,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    overflow: "hidden",
+    position: "relative",
     shadowColor: "#8B5A3C",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.15,
     shadowRadius: 12,
     elevation: 5,
-    position: "relative",
-    overflow: "visible",
+    backgroundColor: "#FBF8F3",
   },
-  heroContent: {
-    flex: 1,
+  heroBannerImage: {
+    width: "100%",
+    height: "100%",
+    resizeMode: "cover",
   },
-  heroTitle: {
-    fontSize: 24,
-    fontWeight: "700",
-    color: "#3D2817",
-    marginBottom: 4,
-    lineHeight: 30,
-  },
-  heroSubtitle: {
-    fontSize: 11,
-    color: "#8B7355",
-    marginBottom: 16,
-  },
-  heroButton: {
-    alignSelf: "flex-start",
-  },
-  heroButtonGradient: {
-    flexDirection: "row",
-    alignItems: "center",
-    paddingHorizontal: 20,
-    paddingVertical: 12,
-    borderRadius: 25,
-    gap: 8,
-  },
-  heroButtonText: {
-    color: "#FFFFFF",
-    fontSize: 13,
-    fontWeight: "600",
-  },
-  heroButtonArrow: {
-    color: "#FFFFFF",
-    fontSize: 16,
-    fontWeight: "700",
-  },
-  heroBear: {
-    width: 140,
-    height: 180,
+  carouselDots: {
     position: "absolute",
-    right: 10,
-    top: -20,
+    bottom: 5,
+    left: 0,
+    right: 0,
+    flexDirection: "row",
+    justifyContent: "center",
+    gap: 6,
+  },
+  dot: {
+    width: 7,
+    height: 7,
+    borderRadius: 3.5,
+    backgroundColor: "#D4A574",
+    opacity: 0.5,
+  },
+  dotActive: {
+    opacity: 1,
+    backgroundColor: "#8B5A3C",
+    width: 8,
+    height: 8,
+    borderRadius: 4,
   },
 
   // Main Menu
   mainMenu: {
     flexDirection: "row",
     justifyContent: "space-around",
-    paddingHorizontal: 16,
-    marginTop: 20,
+    paddingHorizontal: 12,
+    marginTop: 24,
   },
   menuItem: {
     alignItems: "center",
-    width: 80,
+    width: 78,
   },
   menuIcon: {
-    width: 56,
-    height: 56,
-    borderRadius: 16,
+    width: 54,
+    height: 54,
+    borderRadius: 14,
     backgroundColor: "#FFFFFF",
     alignItems: "center",
     justifyContent: "center",
     marginBottom: 8,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.08,
-    shadowRadius: 6,
-    elevation: 3,
+    shadowOpacity: 0.06,
+    shadowRadius: 4,
+    elevation: 2,
   },
   menuIconText: {
-    fontSize: 28,
+    fontSize: 26,
   },
   menuLabel: {
-    fontSize: 11,
+    fontSize: 10,
     fontWeight: "600",
     color: "#3D2817",
     textAlign: "center",
+    marginBottom: 2,
   },
   menuSublabel: {
-    fontSize: 9,
+    fontSize: 8,
     color: "#8B7355",
     textAlign: "center",
   },
 
   // Section
   section: {
-    marginTop: 24,
+    marginTop: 28,
     paddingHorizontal: 16,
   },
   sectionHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 12,
+    marginBottom: 14,
+  },
+  sectionTitleRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6,
+  },
+  sectionIcon: {
+    fontSize: 18,
   },
   sectionTitle: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: "700",
     color: "#3D2817",
   },
   seeAll: {
-    fontSize: 12,
+    fontSize: 11,
     color: "#8B7355",
+    fontWeight: "500",
   },
 
   // Mission
+  mapContainer: {
+    position: "relative",
+    borderRadius: 16,
+    overflow: "hidden",
+    backgroundColor: "#E5DCC8",
+  },
   mapImage: {
     width: "100%",
-    height: 140,
-    borderRadius: 16,
+    height: 150,
   },
-  missionLabel: {
-    fontSize: 12,
-    color: "#8B7355",
-    marginTop: 8,
+  mapOverlay: {
+    position: "absolute",
+    bottom: 12,
+    left: 12,
+    right: 12,
+  },
+  mapLabel: {
+    fontSize: 11,
+    color: "#3D2817",
+    fontWeight: "600",
+    backgroundColor: "#FFFFFFDD",
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    borderRadius: 12,
+    alignSelf: "flex-start",
   },
 
   // Friends
   friendsRow: {
     flexDirection: "row",
-    gap: 12,
-    marginBottom: 12,
+    gap: 10,
+    marginBottom: 14,
   },
   friendCard: {
     flex: 1,
-    aspectRatio: 0.75,
+    aspectRatio: 0.72,
     backgroundColor: "#FFFFFF",
     borderRadius: 16,
-    padding: 8,
+    padding: 6,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 6,
+    shadowOpacity: 0.08,
+    shadowRadius: 5,
     elevation: 3,
   },
   friendImage: {
@@ -471,47 +559,28 @@ const styles = StyleSheet.create({
   },
   viewAllButton: {
     backgroundColor: "#F4C542",
-    borderRadius: 25,
-    paddingVertical: 12,
-    paddingHorizontal: 24,
+    borderRadius: 22,
+    paddingVertical: 11,
+    paddingHorizontal: 28,
     alignSelf: "center",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.15,
-    shadowRadius: 6,
-    elevation: 4,
+    shadowOpacity: 0.12,
+    shadowRadius: 5,
+    elevation: 3,
   },
   viewAllButtonText: {
     color: "#3D2817",
-    fontSize: 13,
+    fontSize: 12,
     fontWeight: "700",
   },
-
-  // Filter Tabs
-  filterTabs: {
-    flexDirection: "row",
-    gap: 8,
-    marginBottom: 12,
-  },
-  filterTab: {
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderRadius: 20,
-    backgroundColor: "#FFFFFF",
-    borderWidth: 1,
-    borderColor: "#E5DCC8",
-  },
-  filterTabActive: {
-    backgroundColor: "#8B5A3C",
-    borderColor: "#8B5A3C",
-  },
-  filterTabText: {
-    fontSize: 11,
-    color: "#8B7355",
-    fontWeight: "600",
-  },
-  filterTabTextActive: {
-    color: "#FFFFFF",
+  viewAllButtonArrow: {
+    color: "#3D2817",
+    fontSize: 14,
+    fontWeight: "700",
   },
 
   // Place Cards
@@ -520,76 +589,87 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   placeCard: {
-    width: 160,
+    width: 140,
     marginRight: 12,
     backgroundColor: "#FFFFFF",
-    borderRadius: 16,
+    borderRadius: 14,
     overflow: "hidden",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 6,
+    shadowOpacity: 0.08,
+    shadowRadius: 5,
     elevation: 3,
   },
-  placeholderImage: {
+  placeImageContainer: {
     width: "100%",
-    height: 120,
+    height: 110,
     backgroundColor: "#E5DCC8",
-    alignItems: "center",
-    justifyContent: "center",
   },
-  placeholderText: {
-    fontSize: 14,
-    color: "#8B7355",
+  placeImage: {
+    width: "100%",
+    height: "100%",
   },
   placeInfo: {
-    padding: 12,
+    padding: 10,
   },
-  placeCheckpoint: {
-    fontSize: 11,
+  placeLabel: {
+    fontSize: 10,
     color: "#8B7355",
+    fontWeight: "500",
   },
 
   // Promotion Banner
   promotionBanner: {
     marginHorizontal: 16,
-    marginTop: 24,
+    marginTop: 28,
     backgroundColor: "#FFF9E6",
     borderRadius: 16,
-    padding: 16,
+    padding: 14,
     flexDirection: "row",
-    justifyContent: "space-between",
     alignItems: "center",
-    borderWidth: 2,
+    gap: 12,
+    borderWidth: 1.5,
     borderColor: "#F4C542",
   },
-  promoContent: {
+  promoLeft: {
+    width: 42,
+    height: 42,
+    borderRadius: 21,
+    backgroundColor: "#FFFFFF",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  promoIcon: {
+    fontSize: 24,
+  },
+  promoCenter: {
     flex: 1,
   },
   promoTitle: {
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: "700",
     color: "#3D2817",
-    marginBottom: 8,
+    marginBottom: 6,
   },
   promoButton: {
     backgroundColor: "#8B5A3C",
-    borderRadius: 20,
-    paddingVertical: 8,
-    paddingHorizontal: 16,
+    borderRadius: 16,
+    paddingVertical: 7,
+    paddingHorizontal: 14,
     alignSelf: "flex-start",
   },
   promoButtonText: {
     color: "#FFFFFF",
-    fontSize: 11,
+    fontSize: 10,
     fontWeight: "600",
   },
+  promoRight: {},
   promoRewards: {
     flexDirection: "row",
-    gap: 8,
+    gap: 6,
   },
   promoRewardIcon: {
-    fontSize: 32,
+    fontSize: 28,
   },
 
   // Bottom Navigation
@@ -601,44 +681,46 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: -2 },
-    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: -3 },
+    shadowOpacity: 0.08,
     shadowRadius: 8,
-    elevation: 10,
+    elevation: 8,
   },
   navItem: {
     flex: 1,
     alignItems: "center",
-    gap: 4,
+    gap: 3,
   },
   navIcon: {
-    fontSize: 24,
-    opacity: 0.5,
+    fontSize: 22,
+    opacity: 0.4,
   },
   navIconActive: {
-    fontSize: 24,
+    fontSize: 22,
+    opacity: 1,
   },
   navCenterIcon: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
+    width: 52,
+    height: 52,
+    borderRadius: 26,
     backgroundColor: "#8B5A3C",
     alignItems: "center",
     justifyContent: "center",
-    marginTop: -24,
-    shadowColor: "#000",
+    marginTop: -28,
+    shadowColor: "#8B5A3C",
     shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.2,
+    shadowOpacity: 0.3,
     shadowRadius: 8,
     elevation: 8,
   },
   navCenterIconText: {
-    fontSize: 28,
+    fontSize: 26,
   },
   navLabel: {
-    fontSize: 10,
+    fontSize: 9,
     color: "#8B7355",
-    opacity: 0.7,
+    opacity: 0.6,
+    fontWeight: "500",
   },
   navLabelActive: {
     color: "#8B5A3C",
