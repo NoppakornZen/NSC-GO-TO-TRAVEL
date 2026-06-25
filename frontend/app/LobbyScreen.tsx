@@ -11,18 +11,22 @@ import {
   StatusBar,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { Ionicons, MaterialCommunityIcons, FontAwesome5 } from "@expo/vector-icons";
+import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
 // Assets
 const LOGO = require("../assets/lobby/logo.png");
-const AVATAR_BEAR = require("../assets/lobby/avatar-bear.png");
+const AVATAR_BEAR = require("../assets/lobby/avatar-bear-new.png");
 const HERO_BANNER_BG = require("../assets/lobby/hero-banner-bg.png");
-const FRIEND_HAMSTER = require("../assets/lobby/friend-hamster.png");
-const FRIEND_OTTER = require("../assets/lobby/friend-otter.png");
-const FRIEND_PANDA = require("../assets/lobby/friend-panda.png");
-const MAP_MISSION = require("../assets/lobby/map-mission.png");
+const FRIEND_1 = require("../assets/lobby/friend-1.png");
+const FRIEND_2 = require("../assets/lobby/friend-2.png");
+const FRIEND_3 = require("../assets/lobby/friend-3.png");
+const MAP_MISSION = require("../assets/lobby/maps.png");
+const SCOUT_ICON = require("../assets/lobby/scout-icon.png");
+const AR_ICON = require("../assets/lobby/ar-icon.png");
+const MEMORYBOOK_ICON = require("../assets/lobby/memorybook-icon.png");
+const MISSION_ICON = require("../assets/lobby/mission-icon.png");
 
 export default function LobbyScreen({ navigation }: any) {
   return (
@@ -54,23 +58,15 @@ export default function LobbyScreen({ navigation }: any) {
               <Image source={LOGO} style={styles.logo} resizeMode="contain" />
             </View>
             <View style={styles.topBarRight}>
-              <View style={styles.iconBtnWrapper}>
-                <TouchableOpacity style={styles.iconBtn}>
-                  <MaterialCommunityIcons name="paw" size={18} color="#8B5A3C" />
-                </TouchableOpacity>
-                <Text style={styles.iconLabel}>--</Text>
-              </View>
-              <View style={styles.iconBtnWrapper}>
-                <TouchableOpacity style={styles.iconBtn}>
-                  <Ionicons name="bag-outline" size={18} color="#8B5A3C" />
-                </TouchableOpacity>
-                <Text style={styles.iconLabel}>--</Text>
-              </View>
-              <View style={styles.iconBtnWrapper}>
-                <TouchableOpacity style={styles.iconBtn}>
-                  <Ionicons name="notifications-outline" size={18} color="#8B5A3C" />
-                </TouchableOpacity>
-              </View>
+              <TouchableOpacity style={styles.iconBtn}>
+                <MaterialCommunityIcons name="paw" size={18} color="#8B5A3C" />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.iconBtn}>
+                <Ionicons name="bag-outline" size={18} color="#8B5A3C" />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.iconBtn}>
+                <Ionicons name="notifications-outline" size={18} color="#8B5A3C" />
+              </TouchableOpacity>
             </View>
           </View>
 
@@ -83,7 +79,7 @@ export default function LobbyScreen({ navigation }: any) {
           <View style={styles.mainMenu}>
             <TouchableOpacity style={styles.menuItem}>
               <View style={styles.menuIcon}>
-                <MaterialCommunityIcons name="paw" size={28} color="#8B5A3C" />
+                <Image source={SCOUT_ICON} style={styles.menuIconImage} resizeMode="contain" />
               </View>
               <Text style={styles.menuLabel}>ส่งตัว Scout</Text>
               <Text style={styles.menuSublabel}>ค้นหาเพื่อนพิเศษ</Text>
@@ -91,7 +87,7 @@ export default function LobbyScreen({ navigation }: any) {
 
             <TouchableOpacity style={styles.menuItem}>
               <View style={styles.menuIcon}>
-                <MaterialCommunityIcons name="cellphone-link" size={28} color="#4A90E2" />
+                <Image source={AR_ICON} style={styles.menuIconImage} resizeMode="contain" />
               </View>
               <Text style={styles.menuLabel}>สแกน AR</Text>
               <Text style={styles.menuSublabel}>เจอ Mascot</Text>
@@ -99,7 +95,7 @@ export default function LobbyScreen({ navigation }: any) {
 
             <TouchableOpacity style={styles.menuItem}>
               <View style={styles.menuIcon}>
-                <Ionicons name="book" size={26} color="#8B5A3C" />
+                <Image source={MEMORYBOOK_ICON} style={styles.menuIconImage} resizeMode="contain" />
               </View>
               <Text style={styles.menuLabel}>Memory Book</Text>
               <Text style={styles.menuSublabel}>บันทึกความทรงจำ</Text>
@@ -107,7 +103,7 @@ export default function LobbyScreen({ navigation }: any) {
 
             <TouchableOpacity style={styles.menuItem}>
               <View style={styles.menuIcon}>
-                <Ionicons name="flag" size={26} color="#6B9B5E" />
+                <Image source={MISSION_ICON} style={styles.menuIconImage} resizeMode="contain" />
               </View>
               <Text style={styles.menuLabel}>ภารกิจ & ของรางวัล</Text>
               <Text style={styles.menuSublabel}>กิจกรรมสนุกๆ</Text>
@@ -149,13 +145,13 @@ export default function LobbyScreen({ navigation }: any) {
             </View>
             <View style={styles.friendsRow}>
               <View style={styles.friendCard}>
-                <Image source={FRIEND_HAMSTER} style={styles.friendImage} resizeMode="contain" />
+                <Image source={FRIEND_1} style={styles.friendImage} resizeMode="contain" />
               </View>
               <View style={styles.friendCard}>
-                <Image source={FRIEND_OTTER} style={styles.friendImage} resizeMode="contain" />
+                <Image source={FRIEND_2} style={styles.friendImage} resizeMode="contain" />
               </View>
               <View style={styles.friendCard}>
-                <Image source={FRIEND_PANDA} style={styles.friendImage} resizeMode="contain" />
+                <Image source={FRIEND_3} style={styles.friendImage} resizeMode="contain" />
               </View>
             </View>
             <TouchableOpacity style={styles.viewAllButton}>
@@ -324,18 +320,21 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   avatarContainer: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
-    borderWidth: 3,
-    borderColor: "#D4A574",
-    padding: 2,
+    width: 52,
+    height: 52,
+    borderRadius: 26,
     backgroundColor: "#FFFFFF",
+    padding: 2,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+    elevation: 2,
   },
   avatar: {
     width: "100%",
     height: "100%",
-    borderRadius: 25,
+    borderRadius: 24,
   },
   greeting: {
     fontSize: 13,
@@ -374,35 +373,23 @@ const styles = StyleSheet.create({
   },
   topBarRight: {
     flexDirection: "row",
-    gap: 6,
+    gap: 8,
     flex: 1,
     justifyContent: "flex-end",
     alignItems: "center",
-  },
-  iconBtnWrapper: {
-    alignItems: "center",
-    flexDirection: "row",
-    gap: 4,
   },
   iconBtn: {
     width: 36,
     height: 36,
     borderRadius: 18,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#F5EFE6",
     alignItems: "center",
     justifyContent: "center",
-    borderWidth: 1,
-    borderColor: "#E5DCC8",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.08,
-    shadowRadius: 3,
-    elevation: 2,
-  },
-  iconLabel: {
-    fontSize: 10,
-    color: "#8B7355",
-    fontWeight: "500",
+    shadowOpacity: 0.05,
+    shadowRadius: 2,
+    elevation: 1,
   },
 
   // Hero Banner
@@ -473,6 +460,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.06,
     shadowRadius: 4,
     elevation: 2,
+  },
+  menuIconImage: {
+    width: 32,
+    height: 32,
   },
   menuLabel: {
     fontSize: 10,
