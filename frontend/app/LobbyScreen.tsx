@@ -12,12 +12,12 @@ import {
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import TopBar from "./components/TopBar";
+import BottomNav from "./components/BottomNav";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
 // Assets
-const LOGO = require("../assets/lobby/logo.png");
-const AVATAR_BEAR = require("../assets/lobby/avatar-bear-new.png");
 const HERO_BANNER_BG = require("../assets/lobby/hero-banner-bg.png");
 const FRIEND_1 = require("../assets/lobby/friend-1.png");
 const FRIEND_2 = require("../assets/lobby/friend-2.png");
@@ -38,37 +38,7 @@ export default function LobbyScreen({ navigation }: any) {
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
         >
-          {/* Top Bar */}
-          <View style={styles.topBar}>
-            <View style={styles.topBarLeft}>
-              <View style={styles.avatarContainer}>
-                <Image source={AVATAR_BEAR} style={styles.avatar} />
-              </View>
-              <View>
-                <Text style={styles.greeting}>สวัสดี, นักเดินทาง!</Text>
-                <View style={styles.levelContainer}>
-                  <Text style={styles.levelText}>Explorer</Text>
-                  <View style={styles.levelBadge}>
-                    <Text style={styles.levelBadgeText}>Lv.1</Text>
-                  </View>
-                </View>
-              </View>
-            </View>
-            <View style={styles.topBarCenter}>
-              <Image source={LOGO} style={styles.logo} resizeMode="contain" />
-            </View>
-            <View style={styles.topBarRight}>
-              <TouchableOpacity style={styles.iconBtn}>
-                <MaterialCommunityIcons name="paw" size={18} color="#8B5A3C" />
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.iconBtn}>
-                <Ionicons name="bag-outline" size={18} color="#8B5A3C" />
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.iconBtn}>
-                <Ionicons name="notifications-outline" size={18} color="#8B5A3C" />
-              </TouchableOpacity>
-            </View>
-          </View>
+          <TopBar />
 
           {/* Hero Banner */}
           <View style={styles.heroBanner}>
@@ -260,31 +230,7 @@ export default function LobbyScreen({ navigation }: any) {
           <View style={{ height: 100 }} />
         </ScrollView>
 
-        {/* Bottom Navigation */}
-        <View style={styles.bottomNav}>
-          <TouchableOpacity style={styles.navItem}>
-            <Ionicons name="home" size={22} color="#8B5A3C" />
-            <Text style={[styles.navLabel, styles.navLabelActive]}>Home</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.navItem}>
-            <Ionicons name="gift-outline" size={22} color="#8B7355" />
-            <Text style={styles.navLabel}>Reward</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.navItem}>
-            <View style={styles.navCenterIcon}>
-              <MaterialCommunityIcons name="dog" size={26} color="#FFFFFF" />
-            </View>
-            <Text style={styles.navLabel}>คู่หู Scout</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.navItem}>
-            <MaterialCommunityIcons name="paw" size={22} color="#8B7355" />
-            <Text style={styles.navLabel}>Paw</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.navItem}>
-            <Ionicons name="person-outline" size={22} color="#8B7355" />
-            <Text style={styles.navLabel}>Profile</Text>
-          </TouchableOpacity>
-        </View>
+        <BottomNav navigation={navigation} activeTab="Home" />
       </SafeAreaView>
     </View>
   );
