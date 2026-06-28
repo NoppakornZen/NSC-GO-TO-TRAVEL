@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -47,6 +47,7 @@ const SCOUTS = [
 ];
 
 export default function ScoutScreen({ navigation }: any) {
+  const [selectedScout, setSelectedScout] = useState<string | null>(null);
   return (
     <View style={styles.root}>
       <StatusBar barStyle="dark-content" backgroundColor="#F5F1E8" />
@@ -70,7 +71,18 @@ export default function ScoutScreen({ navigation }: any) {
           {/* Scout Cards */}
           <View style={styles.cardsContainer}>
             {SCOUTS.map((scout) => (
-              <View key={scout.id} style={styles.card}>
+              <TouchableOpacity
+                key={scout.id}
+                disabled={!scout.active}
+                onPress={() => setSelectedScout(scout.id)}
+                activeOpacity={0.9}
+              >
+                <View
+                  style={[
+                    styles.card,
+                    selectedScout === scout.id && styles.cardSelected,
+                  ]}
+                >
                 {/* Banner background */}
                 <Image
                   source={scout.banner}
@@ -124,7 +136,8 @@ export default function ScoutScreen({ navigation }: any) {
                     <Ionicons name="lock-closed" size={15} color="#8B7355" />
                   )}
                 </View>
-              </View>
+                </View>
+              </TouchableOpacity>
             ))}
           </View>
 
@@ -139,6 +152,18 @@ export default function ScoutScreen({ navigation }: any) {
           <View style={{ height: 100 }} />
         </ScrollView>
 
+        {selectedScout && (
+          <View style={styles.confirmBar}>
+            <TouchableOpacity
+              style={styles.confirmBtn}
+              onPress={() => navigation.navigate("Destination", { scout: selectedScout })}
+            >
+              <MaterialCommunityIcons name="paw" size={18} color="#FFF" />
+              <Text style={styles.confirmBtnText}>ยืนยันการเลือก</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+
         <BottomNav navigation={navigation} activeTab="Scout" />
       </SafeAreaView>
     </View>
@@ -149,51 +174,6 @@ const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: "#F5F1E8" },
   safe: { flex: 1 },
   scrollContent: { paddingBottom: 20 },
-
-  // Top Bar
-  topBar: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-  },
-  topBarLeft: { flexDirection: "row", alignItems: "center", gap: 10, flex: 1 },
-  avatarContainer: {
-    width: 52,
-    height: 52,
-    borderRadius: 26,
-    backgroundColor: "#FFF",
-    padding: 2,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-    elevation: 2,
-    overflow: "hidden",
-  },
-  avatar: { width: "100%", height: "100%", borderRadius: 24 },
-  greeting: { fontSize: 14, fontWeight: "700", color: "#3D2817" },
-  levelContainer: { flexDirection: "row", alignItems: "center", gap: 6 },
-  levelText: { fontSize: 12, color: "#8B7355" },
-  levelBadge: {
-    backgroundColor: "#F4C542",
-    borderRadius: 8,
-    paddingHorizontal: 6,
-    paddingVertical: 1,
-  },
-  levelBadgeText: { fontSize: 10, fontWeight: "700", color: "#3D2817" },
-  topBarCenter: { alignItems: "center" },
-  logo: { width: 80, height: 36 },
-  topBarRight: { flexDirection: "row", gap: 8, justifyContent: "flex-end" },
-  iconBtn: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    backgroundColor: "#F5EFE6",
-    alignItems: "center",
-    justifyContent: "center",
-  },
 
   // Page Header
   pageHeader: {
@@ -217,6 +197,15 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
     borderColor: "#DDD4C4",
     backgroundColor: "#F5EFE6",
+  },
+  cardSelected: {
+    borderWidth: 3,
+    borderColor: "#F4C542",
+    shadowColor: "#F4C542",
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.5,
+    shadowRadius: 8,
+    elevation: 6,
   },
   lockedOverlay: {
     ...StyleSheet.absoluteFillObject,
@@ -291,17 +280,21 @@ const styles = StyleSheet.create({
   },
   unlockText: { flex: 1, fontSize: 12, color: "#6B5340", lineHeight: 18 },
 
-  // Bottom Nav
-  bottomNav: {
-    flexDirection: "row",
-    backgroundColor: "#FFF",
-    borderTopWidth: 1,
-    borderTopColor: "#EDE8E0",
-    paddingVertical: 8,
-    paddingBottom: 16,
+  confirmBar: {
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    backgroundColor: "#F5F1E8",
   },
-  navItem: { flex: 1, alignItems: "center", gap: 2 },
-  navLabel: { fontSize: 10, color: "#8B7355" },
+  confirmBtn: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 8,
+    backgroundColor: "#3D2817",
+    borderRadius: 16,
+    paddingVertical: 14,
+  },
+  confirmBtnText: { fontSize: 16, fontWeight: "700", color: "#FFF" },
   navLabelActive: { color: "#3D2817", fontWeight: "700" },
   navCenterIcon: {
     width: 52,

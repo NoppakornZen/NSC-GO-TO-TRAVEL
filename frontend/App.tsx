@@ -4,6 +4,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LoginScreen from "./app/LoginScreen";
 import LobbyScreen from "./app/LobbyScreen";
 import ScoutScreen from "./app/ScoutScreen";
+import DestinationScreen from "./app/DestinationScreen";
+import ScoutAnimationScreen from "./app/ScoutAnimationScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -15,6 +17,8 @@ export default function App() {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Home" component={LobbyScreen} />
         <Stack.Screen name="Scout" component={ScoutScreen} />
+        <Stack.Screen name="Destination" component={DestinationScreen} />
+        <Stack.Screen name="ScoutAnimation" component={ScoutAnimationScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
